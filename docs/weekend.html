@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>Uso de Fetch</title>
+
+    <style>
+        body {
+            background-color: cornflowerblue;
+        }
+
+        table thead {
+            background: #302b63;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>FECHA</th>
+                    <th>PRESIDENTE</th>
+                    <th>DISCURSANTE</th>
+                    <th>TITULO DISCURSO</th>
+                    <th>LECTOR</th>
+                    <th>ORACIÓN FINAL</th>
+                </tr>
+            </thead>
+            <tbody id="data">
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let data = [
+  
+  {
+    "FECHA": "26-02-2023",
+    "PRESIDENTE": "Leandro Hernández",
+    "DISCURSANTE": "Fernando moreno",
+    "TITULO_DISCURSO": "187-¿Cómo es posible que un dios de amor permita la maldad?",
+    "LECTOR": "Emilian Vornicu",
+    "ORACIÓN_FINAL": "Ignacio Arribas",
+    "CONGREGACIÓN": "Este",
+    "CANCIÓN": "",
+    "TELÉFONO": ""
+  },
+  {
+    "FECHA": "05-03-2023",
+    "PRESIDENTE": "Asamblea",
+    "DISCURSANTE": "Asamblea",
+    "TITULO_DISCURSO": "Asamblea",
+    "LECTOR": "Asamblea",
+    "ORACIÓN_FINAL": "Asamblea",
+    "CONGREGACIÓN": "",
+    "CANCIÓN": "",
+    "TELÉFONO": ""
+  },
+  {
+    "FECHA": "12-03-2023",
+    "PRESIDENTE": "Ignacio Arribas",
+    "DISCURSANTE": "Cristian Sanz",
+    "TITULO_DISCURSO": "165-¿A que valores concedemos mas importancia?",
+    "LECTOR": "Fernando Centelles",
+    "ORACIÓN_FINAL": "Santiago Martín",
+    "CONGREGACIÓN": "",
+    "CANCIÓN": "",
+    "TELÉFONO": ""
+  },
+  {
+    "FECHA": "19-03-2023",
+    "PRESIDENTE": "Emilian Vornicu",
+    "DISCURSANTE": "Efrain Alonso",
+    "TITULO_DISCURSO": "169-¿Por qué debemos guiarnos por la Biblia?",
+    "LECTOR": "Gabriel Serena",
+    "ORACIÓN_FINAL": "Jero Velicia",
+    "CONGREGACIÓN": "",
+    "CANCIÓN": "",
+    "TELÉFONO": ""
+  },
+  {
+    "FECHA": "26-03-2023",
+    "PRESIDENTE": "Gabriel Serena",
+    "DISCURSANTE": "DISCURSO ESPECIAL",
+    "TITULO_DISCURSO": "Mire al futuro sin miedo",
+    "LECTOR": "Ignacio Arribas",
+    "ORACIÓN_FINAL": "Gustavo Musso",
+    "CONGREGACIÓN": "",
+    "CANCIÓN": "",
+    "TELÉFONO": ""
+  },
+  {
+    "FECHA": "02-04-2023",
+    "PRESIDENTE": "Javier Alonso",
+    "DISCURSANTE": "Javier Torrijos",
+    "TITULO_DISCURSO": "46-Mantenga firme su confianza hasta el fin",
+    "LECTOR": "Iker Velicia",
+    "ORACIÓN_FINAL": "Juan Robles",
+    "CONGREGACIÓN": "",
+    "CANCIÓN": "",
+    "TELÉFONO": ""
+  },
+  {
+    "FECHA": "09-04-2023",
+    "PRESIDENTE": "Leandro Hernández",
+    "DISCURSANTE": "Javi Piquero",
+    "TITULO_DISCURSO": "191-Cómo vencen al mundo la fe y el amor",
+    "LECTOR": "Jero Velicia",
+    "ORACIÓN_FINAL": "Mario Ribera",
+    "CONGREGACIÓN": "",
+    "CANCIÓN": "",
+    "TELÉFONO": ""
+  },
+  {
+    "FECHA": "16-04-2023",
+    "PRESIDENTE": "Miguel Merino",
+    "DISCURSANTE": "Alberto Garcia",
+    "TITULO_DISCURSO": "35-¿Puede usted vivir para siempre? ¿lo logrará?",
+    "LECTOR": "Javier Alonso",
+    "ORACIÓN_FINAL": "Leandro Hernández",
+    "CONGREGACIÓN": "",
+    "CANCIÓN": "",
+    "TELÉFONO": ""
+  }
+]
+
+        console.log(data)
+        let body = ""
+        for (var i = 0; i < data.length; i++) {
+            body += `<tr><td>${data[i].FECHA}</td><td>${data[i].PRESIDENTE}</td><td>${data[i].DISCURSANTE}</td><td>${data[i].TITULO_DISCURSO}</td><td>${data[i].LECTOR}</td><td>${data[i].ORACIÓN_FINAL}</td></tr>`
+        }
+        document.getElementById('data').innerHTML = body
+            //console.log(body)
+
+    </script>
+</body>
+
+</html>
