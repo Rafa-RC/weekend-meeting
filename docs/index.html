@@ -1,484 +1,508 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <title>Uso de Fetch</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+            shrink-to-fit=no">
+    <meta name="description" content="Plantilla básica para Bootstrap">
+    <meta name="author" content="Duero">
+
+    <br>
+    <title>Reunión fin de semana</title>
+    <br>
+
+
+    <!-- Cargar el CSS de Boostrap-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <style>
         body {
-            background-color: cornflowerblue;
+            background-color: rgb(234, 237, 243);
         }
 
         table thead {
             background: #302b63;
             color: white;
         }
+
+        table tbody {
+            background: #80aeea;
+            color: rgb(19, 17, 17);
+        }
     </style>
 </head>
 
 <body>
-    <div class="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>FECHA</th>
-                    <th>PRESIDENTE</th>
-                    <th>DISCURSANTE</th>
-                    <th>TITULO DISCURSO</th>
-                    <th>LECTOR</th>
-                    <th>ORACIÓN FINAL</th>
-                </tr>
-            </thead>
-            <tbody id="data">
-            </tbody>
-        </table>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-        crossorigin="anonymous"></script>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 style="">REUNIÓN FIN DE SEMANA</h1>
+                <br>
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>FECHA</th>
+                                <th>PRESIDENTE</th>
+                                <th>DISCURSANTE</th>
+                                <th>TITULO DISCURSO</th>
+                                <th>LECTOR</th>
+                                <th>ORACIÓN FINAL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data">
+                        </tbody>
+                    </table>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+                    crossorigin="anonymous"></script>
 
-    <script>
-        let data = [
-  {
-    "FECHA": "01-01-2023",
-    "PRESIDENTE": "Andrés Cuadrado",
-    "DISCURSANTE": "Isaac Román",
-    "TITULO_DISCURSO": "68-¿Guarda usted rencor, o perdona?",
-    "LECTOR": "Joan Robles",
-    "ORACIÓN_FINAL": "Rubén Vázquez"
-  },
-  {
-    "FECHA": "08-01-2023",
-    "PRESIDENTE": "Ángel Román",
-    "DISCURSANTE": "Ivan Delgado",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "Andrés Cuadrado",
-    "ORACIÓN_FINAL": "Rubén Gómez"
-  },
-  {
-    "FECHA": "15-01-2023",
-    "PRESIDENTE": "Alberto García",
-    "DISCURSANTE": "Dario Merino",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "Carlos Poncela",
-    "ORACIÓN_FINAL": "Andrés Cuadrado"
-  },
-  {
-    "FECHA": "22-01-2023",
-    "PRESIDENTE": "Gustavo Musso",
-    "DISCURSANTE": "Matias Domínguez",
-    "TITULO_DISCURSO": "66-Trabajemos como esclavos para el amo de la siega",
-    "LECTOR": "Ruben Cañadas",
-    "ORACIÓN_FINAL": "Yerai Villena"
-  },
-  {
-    "FECHA": "29-01-2023",
-    "PRESIDENTE": "Juan Robles",
-    "DISCURSANTE": "Saulo Arribas",
-    "TITULO_DISCURSO": "123-Por qué deben ser diferentes los cristianos",
-    "LECTOR": "Ángel Román",
-    "ORACIÓN_FINAL": "Benjamín Bustelo"
-  },
-  {
-    "FECHA": "05-02-2023",
-    "PRESIDENTE": "Emilian Vornicu",
-    "DISCURSANTE": "Manuel Vázquez",
-    "TITULO_DISCURSO": "77. Sean siempre hospitalarios",
-    "LECTOR": "Yerai Villena",
-    "ORACIÓN_FINAL": "Felicito Merino"
-  },
-  {
-    "FECHA": "12-02-2023",
-    "PRESIDENTE": "Gabriel Serena",
-    "DISCURSANTE": "Juan Luis Villena",
-    "TITULO_DISCURSO": "61.¿En las promesas de quien confia usted?",
-    "LECTOR": "Santiago Martín",
-    "ORACIÓN_FINAL": "Gustavo Musso"
-  },
-  {
-    "FECHA": "19-02-2023",
-    "PRESIDENTE": "Javier Alonso",
-    "DISCURSANTE": "Santiago de la cruz.",
-    "TITULO_DISCURSO": "194-Como nos beneficia la sabiduria divina",
-    "LECTOR": "Benjamín Bustelo",
-    "ORACIÓN_FINAL": "Fernando Centelles"
-  },
-  {
-    "FECHA": "26-02-2023",
-    "PRESIDENTE": "Leandro Hernández",
-    "DISCURSANTE": "Fernando moreno",
-    "TITULO_DISCURSO": "187-¿Cómo es posible que un dios de amor permita la maldad?",
-    "LECTOR": "Emilian Vornicu",
-    "ORACIÓN_FINAL": "Ignacio Arribas"
-  },
-  {
-    "FECHA": "05-03-2023",
-    "PRESIDENTE": "",
-    "DISCURSANTE": "Asamblea",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "12-03-2023",
-    "PRESIDENTE": "Ignacio Arribas",
-    "DISCURSANTE": "Cristian Sanz",
-    "TITULO_DISCURSO": "165-¿A que valores concedemos mas importancia?",
-    "LECTOR": "Fernando Centelles",
-    "ORACIÓN_FINAL": "Santiago Martín"
-  },
-  {
-    "FECHA": "19-03-2023",
-    "PRESIDENTE": "Emilian Vornicu",
-    "DISCURSANTE": "Manuel pan",
-    "TITULO_DISCURSO": "51-¿Está transformando la verdad su vida?",
-    "LECTOR": "Gabriel Serena",
-    "ORACIÓN_FINAL": "Jero Velicia"
-  },
-  {
-    "FECHA": "26-03-2023",
-    "PRESIDENTE": "Gabriel Serena",
-    "DISCURSANTE": "Javier Piquero",
-    "TITULO_DISCURSO": "191-Cómo vencen al mundo la fe y el amor",
-    "LECTOR": "Ignacio Arribas",
-    "ORACIÓN_FINAL": "Gustavo Musso"
-  },
-  {
-    "FECHA": "02-04-2023",
-    "PRESIDENTE": "Javier Alonso",
-    "DISCURSANTE": "DISCURSO ESPECIAL",
-    "TITULO_DISCURSO": "Mire al futuro sin miedo",
-    "LECTOR": "Iker Velicia",
-    "ORACIÓN_FINAL": "Juan Robles"
-  },
-  {
-    "FECHA": "09-04-2023",
-    "PRESIDENTE": "Leandro Hernández",
-    "DISCURSANTE": "Efrain Alonso",
-    "TITULO_DISCURSO": "169-¿Por que debemos guiarnos por la biblia?",
-    "LECTOR": "Jero Velicia",
-    "ORACIÓN_FINAL": "Mario Ribera"
-  },
-  {
-    "FECHA": "16-04-2023",
-    "PRESIDENTE": "Miguel Merino",
-    "DISCURSANTE": "Alberto Garcia",
-    "TITULO_DISCURSO": "35-¿Puede usted vivir para siempre? ¿lo logrará?",
-    "LECTOR": "Javier Alonso",
-    "ORACIÓN_FINAL": "Leandro Hernández"
-  },
-  {
-    "FECHA": "23-04-2023",
-    "PRESIDENTE": "Rafael Román",
-    "DISCURSANTE": "Adrian Axo",
-    "TITULO_DISCURSO": "52-¿Quién es su dios?",
-    "LECTOR": "Joan Robles",
-    "ORACIÓN_FINAL": "Adrian Axo"
-  },
-  {
-    "FECHA": "30-04-2023",
-    "PRESIDENTE": "Rubén Gómez",
-    "DISCURSANTE": "Delio arribas",
-    "TITULO_DISCURSO": "100-La amistad verdadera con Dios y el prójimo",
-    "LECTOR": "Leandro Hernandez",
-    "ORACIÓN_FINAL": "Miguel Merino"
-  },
-  {
-    "FECHA": "07-05-2023",
-    "PRESIDENTE": "",
-    "DISCURSANTE": "Visita Hermano Gerrit Lösch",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "14-05-2023",
-    "PRESIDENTE": "Ángel Román",
-    "DISCURSANTE": "Juan Antonio Mellado",
-    "TITULO_DISCURSO": "146-Utilice la educación para alabar a Jehová",
-    "LECTOR": "Luis Sancho",
-    "ORACIÓN_FINAL": "Rubén Gómez"
-  },
-  {
-    "FECHA": "21-05-2023",
-    "PRESIDENTE": "Alberto García",
-    "DISCURSANTE": "Visita Circuito",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "Miguel Merino",
-    "ORACIÓN_FINAL": "Jorge Machado"
-  },
-  {
-    "FECHA": "28-05-2023",
-    "PRESIDENTE": "Gustavo Musso",
-    "DISCURSANTE": "Luis carlos revuelta",
-    "TITULO_DISCURSO": "181-¿Faltara menos de lo que usted cree?",
-    "LECTOR": "Rafael Román",
-    "ORACIÓN_FINAL": "Rubén Vázquez"
-  },
-  {
-    "FECHA": "04-06-2023",
-    "PRESIDENTE": "Ignacio Arribas",
-    "DISCURSANTE": "Oscar Macho",
-    "TITULO_DISCURSO": "65-Cómo hallar honra y gozo en el ministerio de Dios",
-    "LECTOR": "Ruben Vazquez",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "11-06-2023",
-    "PRESIDENTE": "Emilian Vornicu",
-    "DISCURSANTE": "Ulises pereira",
-    "TITULO_DISCURSO": "41-«Esténse quietos y vean la salvación de Jehová»",
-    "LECTOR": "Rubén Gómez",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "18-06-2023",
-    "PRESIDENTE": "Gabriel Serena",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "Unai García",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "25-06-2023",
-    "PRESIDENTE": "Javier Alonso",
-    "DISCURSANTE": "Javier Torrijos",
-    "TITULO_DISCURSO": "46-Mantenga firme su confianza hasta el fin",
-    "LECTOR": "Ángel Román",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "02-07-2023",
-    "PRESIDENTE": "Leandro Hernández",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "Alberto García",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "09-07-2023",
-    "PRESIDENTE": "Unai García",
-    "DISCURSANTE": "Natan Cortijo",
-    "TITULO_DISCURSO": "32-Como enfrentarse a las inquietudes de la vida",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "16-07-2023",
-    "PRESIDENTE": "Miguel Merino",
-    "DISCURSANTE": "Rúben Barriga",
-    "TITULO_DISCURSO": "49-Una tierra limpia, ¿vivirá usted para verla?",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "23-07-2023",
-    "PRESIDENTE": "Rafael Román",
-    "DISCURSANTE": "ASAMBLEA REGIONAL",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "30-07-2023",
-    "PRESIDENTE": "Rubén Gómez",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "06-08-2023",
-    "PRESIDENTE": "Andrés Cuadrado",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "13-08-2023",
-    "PRESIDENTE": "Ángel Román",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "20-08-2023",
-    "PRESIDENTE": "Alberto García",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "27-08-2023",
-    "PRESIDENTE": "Gustavo Musso",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "03-09-2023",
-    "PRESIDENTE": "Ignacio Arribas",
-    "DISCURSANTE": "Julio Fernandez",
-    "TITULO_DISCURSO": "48-Cómo enfrentarse a la prueba de la lealtad cristiana",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "10-09-2023",
-    "PRESIDENTE": "Emilian Vornicu",
-    "DISCURSANTE": "Rodolfo Romo",
-    "TITULO_DISCURSO": "174-¿Quién sera digno de entrar en el nuevo mundo de Dios?",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "17-09-2023",
-    "PRESIDENTE": "Gabriel Serena",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "24-09-2023",
-    "PRESIDENTE": "Javier Alonso",
-    "DISCURSANTE": "Rúben Rodrigo",
-    "TITULO_DISCURSO": "26-¿Lo considera Dios a usted personalmente importante?",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "01-10-2023",
-    "PRESIDENTE": "Leandro Hernández",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "08-10-2023",
-    "PRESIDENTE": "Unai García",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "15-10-2023",
-    "PRESIDENTE": "Miguel Merino",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "22-10-2023",
-    "PRESIDENTE": "Rafael Román",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "29-10-2023",
-    "PRESIDENTE": "Rubén Gómez",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "05-11-2023",
-    "PRESIDENTE": "Andrés Cuadrado",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "12-11-2023",
-    "PRESIDENTE": "Ángel Román",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "19-11-2023",
-    "PRESIDENTE": "Alberto García",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "26-11-2023",
-    "PRESIDENTE": "Gustavo Musso",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "03-12-2023",
-    "PRESIDENTE": "Ignacio Arribas",
-    "DISCURSANTE": "David Ramos",
-    "TITULO_DISCURSO": "102-Prestemos atención a la palabra profética",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "10-12-2023",
-    "PRESIDENTE": "Emilian Vornicu",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "17-12-2023",
-    "PRESIDENTE": "Gabriel Serena",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "24-12-2023",
-    "PRESIDENTE": "Javier Alonso",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  },
-  {
-    "FECHA": "31-12-2023",
-    "PRESIDENTE": "Leandro Hernández",
-    "DISCURSANTE": "",
-    "TITULO_DISCURSO": "",
-    "LECTOR": "",
-    "ORACIÓN_FINAL": ""
-  }
-]
+                <script>
+                    let data = [
+                        {
+                            "FECHA": "01-01-2023",
+                            "PRESIDENTE": "Andrés Cuadrado",
+                            "DISCURSANTE": "Isaac Román",
+                            "TITULO_DISCURSO": "68-¿Guarda usted rencor, o perdona?",
+                            "LECTOR": "Joan Robles",
+                            "ORACIÓN_FINAL": "Rubén Vázquez"
+                        },
+                        {
+                            "FECHA": "08-01-2023",
+                            "PRESIDENTE": "Ángel Román",
+                            "DISCURSANTE": "Ivan Delgado",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "Andrés Cuadrado",
+                            "ORACIÓN_FINAL": "Rubén Gómez"
+                        },
+                        {
+                            "FECHA": "15-01-2023",
+                            "PRESIDENTE": "Alberto García",
+                            "DISCURSANTE": "Dario Merino",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "Carlos Poncela",
+                            "ORACIÓN_FINAL": "Andrés Cuadrado"
+                        },
+                        {
+                            "FECHA": "22-01-2023",
+                            "PRESIDENTE": "Gustavo Musso",
+                            "DISCURSANTE": "Matias Domínguez",
+                            "TITULO_DISCURSO": "66-Trabajemos como esclavos para el amo de la siega",
+                            "LECTOR": "Ruben Cañadas",
+                            "ORACIÓN_FINAL": "Yerai Villena"
+                        },
+                        {
+                            "FECHA": "29-01-2023",
+                            "PRESIDENTE": "Juan Robles",
+                            "DISCURSANTE": "Saulo Arribas",
+                            "TITULO_DISCURSO": "123-Por qué deben ser diferentes los cristianos",
+                            "LECTOR": "Ángel Román",
+                            "ORACIÓN_FINAL": "Benjamín Bustelo"
+                        },
+                        {
+                            "FECHA": "05-02-2023",
+                            "PRESIDENTE": "Emilian Vornicu",
+                            "DISCURSANTE": "Manuel Vázquez",
+                            "TITULO_DISCURSO": "77. Sean siempre hospitalarios",
+                            "LECTOR": "Yerai Villena",
+                            "ORACIÓN_FINAL": "Felicito Merino"
+                        },
+                        {
+                            "FECHA": "12-02-2023",
+                            "PRESIDENTE": "Gabriel Serena",
+                            "DISCURSANTE": "Juan Luis Villena",
+                            "TITULO_DISCURSO": "61.¿En las promesas de quien confia usted?",
+                            "LECTOR": "Santiago Martín",
+                            "ORACIÓN_FINAL": "Gustavo Musso"
+                        },
+                        {
+                            "FECHA": "19-02-2023",
+                            "PRESIDENTE": "Javier Alonso",
+                            "DISCURSANTE": "Santiago de la cruz.",
+                            "TITULO_DISCURSO": "194-Como nos beneficia la sabiduria divina",
+                            "LECTOR": "Benjamín Bustelo",
+                            "ORACIÓN_FINAL": "Fernando Centelles"
+                        },
+                        {
+                            "FECHA": "26-02-2023",
+                            "PRESIDENTE": "Leandro Hernández",
+                            "DISCURSANTE": "Fernando moreno",
+                            "TITULO_DISCURSO": "187-¿Cómo es posible que un dios de amor permita la maldad?",
+                            "LECTOR": "Emilian Vornicu",
+                            "ORACIÓN_FINAL": "Ignacio Arribas"
+                        },
+                        {
+                            "FECHA": "05-03-2023",
+                            "PRESIDENTE": "",
+                            "DISCURSANTE": "Asamblea",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "12-03-2023",
+                            "PRESIDENTE": "Ignacio Arribas",
+                            "DISCURSANTE": "Cristian Sanz",
+                            "TITULO_DISCURSO": "165-¿A que valores concedemos mas importancia?",
+                            "LECTOR": "Fernando Centelles",
+                            "ORACIÓN_FINAL": "Santiago Martín"
+                        },
+                        {
+                            "FECHA": "19-03-2023",
+                            "PRESIDENTE": "Emilian Vornicu",
+                            "DISCURSANTE": "Manuel pan",
+                            "TITULO_DISCURSO": "51-¿Está transformando la verdad su vida?",
+                            "LECTOR": "Gabriel Serena",
+                            "ORACIÓN_FINAL": "Jero Velicia"
+                        },
+                        {
+                            "FECHA": "26-03-2023",
+                            "PRESIDENTE": "Gabriel Serena",
+                            "DISCURSANTE": "Javier Piquero",
+                            "TITULO_DISCURSO": "191-Cómo vencen al mundo la fe y el amor",
+                            "LECTOR": "Ignacio Arribas",
+                            "ORACIÓN_FINAL": "Gustavo Musso"
+                        },
+                        {
+                            "FECHA": "02-04-2023",
+                            "PRESIDENTE": "Javier Alonso",
+                            "DISCURSANTE": "DISCURSO ESPECIAL",
+                            "TITULO_DISCURSO": "Mire al futuro sin miedo",
+                            "LECTOR": "Iker Velicia",
+                            "ORACIÓN_FINAL": "Juan Robles"
+                        },
+                        {
+                            "FECHA": "09-04-2023",
+                            "PRESIDENTE": "Leandro Hernández",
+                            "DISCURSANTE": "Efrain Alonso",
+                            "TITULO_DISCURSO": "169-¿Por que debemos guiarnos por la biblia?",
+                            "LECTOR": "Jero Velicia",
+                            "ORACIÓN_FINAL": "Mario Ribera"
+                        },
+                        {
+                            "FECHA": "16-04-2023",
+                            "PRESIDENTE": "Miguel Merino",
+                            "DISCURSANTE": "Alberto Garcia",
+                            "TITULO_DISCURSO": "35-¿Puede usted vivir para siempre? ¿lo logrará?",
+                            "LECTOR": "Javier Alonso",
+                            "ORACIÓN_FINAL": "Leandro Hernández"
+                        },
+                        {
+                            "FECHA": "23-04-2023",
+                            "PRESIDENTE": "Rafael Román",
+                            "DISCURSANTE": "Adrian Axo",
+                            "TITULO_DISCURSO": "52-¿Quién es su dios?",
+                            "LECTOR": "Joan Robles",
+                            "ORACIÓN_FINAL": "Adrian Axo"
+                        },
+                        {
+                            "FECHA": "30-04-2023",
+                            "PRESIDENTE": "Rubén Gómez",
+                            "DISCURSANTE": "Delio arribas",
+                            "TITULO_DISCURSO": "100-La amistad verdadera con Dios y el prójimo",
+                            "LECTOR": "Leandro Hernandez",
+                            "ORACIÓN_FINAL": "Miguel Merino"
+                        },
+                        {
+                            "FECHA": "07-05-2023",
+                            "PRESIDENTE": "",
+                            "DISCURSANTE": "Visita Hermano Gerrit Lösch",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "14-05-2023",
+                            "PRESIDENTE": "Ángel Román",
+                            "DISCURSANTE": "Juan Antonio Mellado",
+                            "TITULO_DISCURSO": "146-Utilice la educación para alabar a Jehová",
+                            "LECTOR": "Luis Sancho",
+                            "ORACIÓN_FINAL": "Rubén Gómez"
+                        },
+                        {
+                            "FECHA": "21-05-2023",
+                            "PRESIDENTE": "Alberto García",
+                            "DISCURSANTE": "Visita Circuito",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "Miguel Merino",
+                            "ORACIÓN_FINAL": "Jorge Machado"
+                        },
+                        {
+                            "FECHA": "28-05-2023",
+                            "PRESIDENTE": "Gustavo Musso",
+                            "DISCURSANTE": "Luis carlos revuelta",
+                            "TITULO_DISCURSO": "181-¿Faltara menos de lo que usted cree?",
+                            "LECTOR": "Rafael Román",
+                            "ORACIÓN_FINAL": "Rubén Vázquez"
+                        },
+                        {
+                            "FECHA": "04-06-2023",
+                            "PRESIDENTE": "Ignacio Arribas",
+                            "DISCURSANTE": "Oscar Macho",
+                            "TITULO_DISCURSO": "65-Cómo hallar honra y gozo en el ministerio de Dios",
+                            "LECTOR": "Ruben Vazquez",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "11-06-2023",
+                            "PRESIDENTE": "Emilian Vornicu",
+                            "DISCURSANTE": "Ulises pereira",
+                            "TITULO_DISCURSO": "41-«Esténse quietos y vean la salvación de Jehová»",
+                            "LECTOR": "Rubén Gómez",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "18-06-2023",
+                            "PRESIDENTE": "Gabriel Serena",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "Unai García",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "25-06-2023",
+                            "PRESIDENTE": "Javier Alonso",
+                            "DISCURSANTE": "Javier Torrijos",
+                            "TITULO_DISCURSO": "46-Mantenga firme su confianza hasta el fin",
+                            "LECTOR": "Ángel Román",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "02-07-2023",
+                            "PRESIDENTE": "Leandro Hernández",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "Alberto García",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "09-07-2023",
+                            "PRESIDENTE": "Unai García",
+                            "DISCURSANTE": "Natan Cortijo",
+                            "TITULO_DISCURSO": "32-Como enfrentarse a las inquietudes de la vida",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "16-07-2023",
+                            "PRESIDENTE": "Miguel Merino",
+                            "DISCURSANTE": "Rúben Barriga",
+                            "TITULO_DISCURSO": "49-Una tierra limpia, ¿vivirá usted para verla?",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "23-07-2023",
+                            "PRESIDENTE": "Rafael Román",
+                            "DISCURSANTE": "ASAMBLEA REGIONAL",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "30-07-2023",
+                            "PRESIDENTE": "Rubén Gómez",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "06-08-2023",
+                            "PRESIDENTE": "Andrés Cuadrado",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "13-08-2023",
+                            "PRESIDENTE": "Ángel Román",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "20-08-2023",
+                            "PRESIDENTE": "Alberto García",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "27-08-2023",
+                            "PRESIDENTE": "Gustavo Musso",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "03-09-2023",
+                            "PRESIDENTE": "Ignacio Arribas",
+                            "DISCURSANTE": "Julio Fernandez",
+                            "TITULO_DISCURSO": "48-Cómo enfrentarse a la prueba de la lealtad cristiana",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "10-09-2023",
+                            "PRESIDENTE": "Emilian Vornicu",
+                            "DISCURSANTE": "Rodolfo Romo",
+                            "TITULO_DISCURSO": "174-¿Quién sera digno de entrar en el nuevo mundo de Dios?",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "17-09-2023",
+                            "PRESIDENTE": "Gabriel Serena",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "24-09-2023",
+                            "PRESIDENTE": "Javier Alonso",
+                            "DISCURSANTE": "Rúben Rodrigo",
+                            "TITULO_DISCURSO": "26-¿Lo considera Dios a usted personalmente importante?",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "01-10-2023",
+                            "PRESIDENTE": "Leandro Hernández",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "08-10-2023",
+                            "PRESIDENTE": "Unai García",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "15-10-2023",
+                            "PRESIDENTE": "Miguel Merino",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "22-10-2023",
+                            "PRESIDENTE": "Rafael Román",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "29-10-2023",
+                            "PRESIDENTE": "Rubén Gómez",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "05-11-2023",
+                            "PRESIDENTE": "Andrés Cuadrado",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "12-11-2023",
+                            "PRESIDENTE": "Ángel Román",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "19-11-2023",
+                            "PRESIDENTE": "Alberto García",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "26-11-2023",
+                            "PRESIDENTE": "Gustavo Musso",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "03-12-2023",
+                            "PRESIDENTE": "Ignacio Arribas",
+                            "DISCURSANTE": "David Ramos",
+                            "TITULO_DISCURSO": "102-Prestemos atención a la palabra profética",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "10-12-2023",
+                            "PRESIDENTE": "Emilian Vornicu",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "17-12-2023",
+                            "PRESIDENTE": "Gabriel Serena",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "24-12-2023",
+                            "PRESIDENTE": "Javier Alonso",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        },
+                        {
+                            "FECHA": "31-12-2023",
+                            "PRESIDENTE": "Leandro Hernández",
+                            "DISCURSANTE": "",
+                            "TITULO_DISCURSO": "",
+                            "LECTOR": "",
+                            "ORACIÓN_FINAL": ""
+                        }
+                    ]
 
-        console.log(data)
-        let body = ""
-        for (var i = 0; i < data.length; i++) {
-            body += `<tr><td>${data[i].FECHA}</td><td>${data[i].PRESIDENTE}</td><td>${data[i].DISCURSANTE}</td><td>${data[i].TITULO_DISCURSO}</td><td>${data[i].LECTOR}</td><td>${data[i].ORACIÓN_FINAL}</td></tr>`
-        }
-        document.getElementById('data').innerHTML = body
-            //console.log(body)
+                    console.log(data)
+                    let body = ""
+                    for (var i = 0; i < data.length; i++) {
+                        body += `<tr><td>${data[i].FECHA}</td><td>${data[i].PRESIDENTE}</td><td>${data[i].DISCURSANTE}</td><td>${data[i].TITULO_DISCURSO}</td><td>${data[i].LECTOR}</td><td>${data[i].ORACIÓN_FINAL}</td></tr>`
+                    }
+                    document.getElementById('data').innerHTML = body
+                            //console.log(body)
 
-    </script>
+                </script>
+                </table>
+            </div>
+        </div>
+        </div>
+    </main>
 </body>
 
 </html>
